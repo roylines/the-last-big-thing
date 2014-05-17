@@ -1,0 +1,18 @@
+body {
+  text-align: center;
+  margin: 10px;
+}
+
+body > div {
+  background-color: white;
+}
+
+article > h1 {
+  font-size: 90px;
+}
+
+article > p {
+  font-size: 30px;
+}
+
+

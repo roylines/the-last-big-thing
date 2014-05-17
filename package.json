@@ -1,0 +1,24 @@
+{
+  "name": "the-last-big-thing",
+  "version": "0.0.0",
+  "description": "look at the last big thing",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/roylines/the-last-big-thing.git"
+  },
+  "author": "Roy Lines",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/roylines/the-last-big-thing/issues"
+  },
+  "homepage": "https://github.com/roylines/the-last-big-thing",
+  "dependencies": {
+    "response": "*",
+    "router": "^0.6.2"
+  }
+}
