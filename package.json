@@ -21,5 +21,10 @@
     "response": "*",
     "router": "*",
     "socket.io": "*"
+  },
+  {
+    "engines": {
+      "node": "0.10.x"
+    }
   }
 }
