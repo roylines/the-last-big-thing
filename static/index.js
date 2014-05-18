@@ -4,6 +4,7 @@ var lastBigThing = function(data) {
 };
 
 $(function() {
-  var socket = io.connect('http://localhost:8000');
+  var origin = window.location.origin;
+  var socket = io.connect(origin);
   socket.on('AABBCC', lastBigThing);
 });

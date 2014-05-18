@@ -4,8 +4,9 @@ var fs = require('fs'),
   app = require('http').createServer(router),
   io = require('socket.io').listen(app);
 
-app.listen(process.env.PORT || 8000);
-console.log('Server running on http://localhost:8000');
+var port = process.env.PORT || 8000;
+app.listen(port);
+console.log('Server running on ' + port);
 
 var staticContent = function(name, res) {
   var f = fs.createReadStream('static/' + name);
