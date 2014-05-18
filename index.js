@@ -4,7 +4,7 @@ var fs = require('fs'),
   app = require('http').createServer(router),
   io = require('socket.io').listen(app);
 
-app.listen(8000);
+app.listen(process.env.PORT || 8000);
 console.log('Server running on http://localhost:8000');
 
 var staticContent = function(name, res) {
@@ -20,12 +20,17 @@ router.get('/{page}', function(req, res) {
   return staticContent(req.params.page, res);
 });
 
-setInterval(function() {
-  console.log('last-big-thing');
-  var html = '<h1>' + new Date().getTime() + '</h1>';
-  io.sockets.emit('last-big-thing', html);
-}, 1000);
+router.post('/integration/{integration}/{token}', function(req, res) {
+  console.log('last-big-thing', req.params.integration, req.params.token, req);
 
+  var html = '<h1>' + req.params.integration + '</h1>';
+  //var html = '<p>' + JSON.stringify(req.body) + '</p>';
+  io.sockets.emit(req.params.token, html);
+  res.end();
+});
+
+/*
 io.sockets.on('connection', function(socket) {
   console.log('connected socket');
 });
+*/
