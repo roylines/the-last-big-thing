@@ -1,7 +1,11 @@
 var fs = require('fs'),
-  http = require('http'),
   response = require('response'),
-  router = require('router')();
+  router = require('router')(),
+  app = require('http').createServer(router),
+  io = require('socket.io').listen(app);
+
+app.listen(8000);
+console.log('Server running on http://localhost:8000');
 
 var staticContent = function(name, res) {
   var f = fs.createReadStream('static/' + name);
@@ -12,29 +16,16 @@ router.get('/', function(req, res) {
   return staticContent('index.html', res);
 });
 
-/*
-router.get('/data', function(req, res) {
-  setTimeout(function() {
-    var data = {
-      title: 'TITLE',
-      when: new Date().getTime()
-    };
-    return response.json(data).pipe(res);
-  }, 5000);
-});
-*/
-
-router.get('/data', function(req, res) {
-  setTimeout(function() {
-    var html = '<h1>' + new Date().getTime() + '</h1>'
-    return response.html(html).pipe(res);
-  }, 5000);
-});
-
 router.get('/{page}', function(req, res) {
   return staticContent(req.params.page, res);
 });
 
-http.createServer(router).listen(8000);
+setInterval(function() {
+  console.log('last-big-thing');
+  var html = '<h1>' + new Date().getTime() + '</h1>';
+  io.sockets.emit('last-big-thing', html);
+}, 1000);
 
-console.log('Server running on http://localhost:8000');
+io.sockets.on('connection', function(socket) {
+  console.log('connected socket');
+});

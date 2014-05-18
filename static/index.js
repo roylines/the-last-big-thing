@@ -1,22 +1,8 @@
-var success = function(data) {
+var lastBigThing = function(data) {
   $('#lbt').html(data);
-  poll();
-};
-
-var error = function() {
-  setTimeout(poll, 10000);
-};
-
-var poll = function() {
-  $.ajax({
-    url: "data",
-    success: success,
-    dataType: "html",
-    error: error,
-    timeout: 30000
-  });
 };
 
 $(function() {
-  poll();
+  var socket = io.connect('http://localhost:8000');
+  socket.on('last-big-thing', lastBigThing);
 });

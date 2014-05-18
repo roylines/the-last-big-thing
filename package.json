@@ -19,6 +19,7 @@
   "homepage": "https://github.com/roylines/the-last-big-thing",
   "dependencies": {
     "response": "*",
-    "router": "^0.6.2"
+    "router": "*",
+    "socket.io": "*"
   }
 }
