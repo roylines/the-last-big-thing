@@ -1,25 +1,23 @@
-var fs = require('fs'),
-  response = require('response'),
+var content = require('./lib/content'),
   router = require('router')(),
   app = require('http').createServer(router),
   io = require('socket.io').listen(app);
+
+// https://devcenter.heroku.com/articles/using-socket-io-with-node-js-on-heroku
+if (process.env.HEROKU === 'true') {
+  io.configure(function() {
+    io.set("transports", ["xhr-polling"]);
+    io.set("polling duration", 10);
+  });
+}
 
 var port = process.env.PORT || 8000;
 app.listen(port);
 console.log('Server running on ' + port);
 
-var staticContent = function(name, res) {
-  var f = fs.createReadStream('static/' + name);
-  return f.pipe(response.html()).pipe(res);
-};
-
-router.get('/', function(req, res) {
-  return staticContent('index.html', res);
-});
-
-router.get('/{page}', function(req, res) {
-  return staticContent(req.params.page, res);
-});
+router.get('/', content.static('index.html'));
+router.get('/index.js', content.static('index.js'));
+router.get('/styles.css', content.static('styles.css'));
 
 router.post('/integration/{integration}/{token}', function(req, res) {
   console.log('last-big-thing', req.params.integration, req.params.token, req);
