@@ -24,7 +24,7 @@
     "raw-body": "*",
     "response": "*",
     "router": "*",
-    "socket.io": "*"
+    "socket.io": "0.9.*"
   },
   "devDependencies": {
     "tap": "*"
