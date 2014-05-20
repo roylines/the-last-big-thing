@@ -21,6 +21,7 @@
     "node": "0.10.x"
   },
   "dependencies": {
+    "raw-body": "*",
     "response": "*",
     "router": "*",
     "socket.io": "*"

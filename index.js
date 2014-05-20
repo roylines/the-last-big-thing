@@ -1,4 +1,5 @@
 var content = require('./lib/content'),
+  body = require('raw-body'),
   router = require('router')(),
   app = require('http').createServer(router),
   io = require('socket.io').listen(app);
@@ -20,12 +21,15 @@ router.get('/index.js', content.static('index.js'));
 router.get('/styles.css', content.static('styles.css'));
 
 router.post('/integration/{integration}/{token}', function(req, res) {
-  console.log('last-big-thing', req.params.integration, req.params.token, req);
+  body(req, function(e, s) {
+    console.log('last-big-thing', req.params.integration, req.params.token, s.toString());
 
-  var html = '<h1>' + req.params.integration + '</h1>';
-  //var html = '<p>' + JSON.stringify(req.body) + '</p>';
-  io.sockets.emit(req.params.token, html);
-  res.end();
+    var html = '<h1>' + req.params.integration + '</h1>';
+    html += '<h2>' + new Date() + '</h2>';
+    html += '<p>' + s.toString()  + '</p>';
+    io.sockets.emit(req.params.token, html);
+    res.end();
+  });
 });
 
 /*
