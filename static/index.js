@@ -1,6 +1,6 @@
 var lastBigThing = function(data) {
   console.log('data received', data);
-  $('#lbt').html(data.toString());
+  $('#lbt').html(JSON.stringify(data));
 };
 
 $(function() {
