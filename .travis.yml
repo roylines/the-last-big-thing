@@ -1,4 +1,8 @@
 language: node_js
 node_js:
-    - "0.11"
-    - "0.10"
+- '0.11'
+- '0.10'
+deploy:
+  provider: heroku
+  api_key:
+    secure: EpOtd0Ppr82dVyZVBfuAV16erc4nJqFg45JhIQdKKau0JxxvPNLQyE1KU+N3K/6Zrsn/tsGg2z5OmTcx7v7ZjaW87OsYnqVTZfZ6KvB0V8L9ki8JYAhsyHfuIsgZsktpqePsQlt4ob5Lz3hIqY7gzasOYVDZYIASOyrl/l5ZAIw=
