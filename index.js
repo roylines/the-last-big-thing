@@ -31,13 +31,11 @@ router.get('/styles.css', content.static('styles.css'));
 
 router.post('/integration/{integration}/{token}', function(req, res) {
   body(req, function(e, s) {
-    console.log('last-big-thing', req.params.integration, req.params.token, s.toString());
-
-    var html = '<h1>' + req.params.integration + '</h1>';
-    html += '<h2>' + new Date() + '</h2>';
-    html += '<p>' + s.toString() + '</p>';
-    io.sockets.emit(req.params.token, html);
-    res.end();
+    var integration = require('./integrations/' + req.params.integration);
+    integration.transform(s.toString(), function(e, transformed) {
+      io.sockets.emit(req.params.token, transformed);
+      res.end();
+    });
   });
 });
 
