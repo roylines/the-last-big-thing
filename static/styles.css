@@ -1,18 +1,39 @@
+/*
+#062074
+#EFE603
+#5A5600
+#F1F1F1
+#0C0C0C
+*/
 body {
+  background-color: #0C0C0C;
+  color: #5A5600;
+  font-family: 'Roboto', sans-serif;
   text-align: center;
   margin: 10px;
 }
 
-body > div {
-  background-color: white;
+h1 {
+  font-size: 1.25em;
 }
 
-article > h1 {
-  font-size: 90px;
+#lbt {
+  display:none;
 }
 
-article > p {
-  font-size: 30px;
+#lbt > h1 {
+  color: #EFE603;
+  font-size: 6em;
+}
+
+#lbt > h2 {
+  color: #EFE603;
+  font-size: 3em;
+}
+
+#lbt > p {
+  color: #062074;
+  font-size: 3em;
 }
 
 
