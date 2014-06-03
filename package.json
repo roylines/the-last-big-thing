@@ -21,6 +21,7 @@
     "node": "0.10.x"
   },
   "dependencies": {
+    "lodash": "*",
     "raw-body": "*",
     "response": "*",
     "router": "*",

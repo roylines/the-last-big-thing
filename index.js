@@ -1,14 +1,15 @@
 var content = require('./lib/content'),
-  body = require('raw-body'),
+  fs = require('fs'),
+  integrations = require('./integrations/integrations'),
   router = require('router')(),
   app = require('http').createServer(router),
   io = require('socket.io').listen(app);
-
+/*
 var authorization = function(data, done) {
   console.log('authorization', data);
   return done(null, true);
 };
-
+*/
 io.enable('browser client minification'); // send minified client
 io.enable('browser client etag'); // apply etag caching logic based on version number
 io.enable('browser client gzip'); // gzip the file
@@ -22,6 +23,7 @@ if (process.env.HEROKU === 'true') {
 };
 
 var port = process.env.PORT || 8000;
+
 app.listen(port);
 console.log('Server running on ' + port);
 
@@ -30,9 +32,16 @@ router.get('/index.js', content.static('index.js'));
 router.get('/styles.css', content.static('styles.css'));
 
 router.post('/integration/{integration}/{token}', function(req, res) {
-  body(req, function(e, s) {
-    var integration = require('./integrations/' + req.params.integration);
-    integration.transform(s.toString(), function(e, transformed) {
+  integrations.get(req.params.integration, function(e, integration) {
+    if (e) {
+      console.error(e);
+      return res.end();
+    }
+    integration.transform(req, function(e, transformed) {
+      if (e) {
+        console.error(e);
+        return res.end();
+      }
       io.sockets.emit(req.params.token, transformed);
       res.end();
     });
