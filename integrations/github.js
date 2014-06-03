@@ -9,6 +9,8 @@ github.transform = function(req, done) {
 
     var json = JSON.parse(s.toString());
 
+    var transformed = json;
+    /*
     var transformed = {
       src: 'GitHub',
       title: 'New GitHub Issue',
@@ -16,6 +18,7 @@ github.transform = function(req, done) {
       utc: new Date().getTime(),
       text: json.issue.body
     };
+    */
 
     return done(null, transformed);
   });
