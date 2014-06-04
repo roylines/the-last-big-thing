@@ -48,8 +48,6 @@ router.post('/integration/{integration}/{token}', function(req, res) {
   });
 });
 
-/*
 io.sockets.on('connection', function(socket) {
-  console.log('connected socket');
+  console.log('connected socket', socket);
 });
-*/
