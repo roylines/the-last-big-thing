@@ -3,23 +3,16 @@ var content = require('./lib/content'),
   integrations = require('./integrations/integrations'),
   router = require('router')(),
   app = require('http').createServer(router),
-  io = require('socket.io').listen(app);
-/*
-var authorization = function(data, done) {
-  console.log('authorization', data);
-  return done(null, true);
-};
-*/
-io.enable('browser client minification'); // send minified client
-io.enable('browser client etag'); // apply etag caching logic based on version number
-io.enable('browser client gzip'); // gzip the file
-io.set('log level', 1); // reduce logging
-// io.set('authorization', authorization); 
+  io = require('socket.io')(app);
+//io.enable('browser client minification'); // send minified client
+//io.enable('browser client etag'); // apply etag caching logic based on version number
+//io.enable('browser client gzip'); // gzip the file
+//io.set('log level', 1); // reduce logging
 
 // https://devcenter.heroku.com/articles/using-socket-io-with-node-js-on-heroku
 if (process.env.HEROKU === 'true') {
-  io.set("transports", ["xhr-polling"]);
-  io.set("polling duration", 10);
+  //io.set("transports", ["xhr-polling"]);
+  //io.set("polling duration", 10);
 };
 
 var port = process.env.PORT || 8000;
