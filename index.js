@@ -7,6 +7,12 @@ var content = require('./lib/content'),
 
 var port = process.env.PORT || 8000;
 
+if (process.env.HEROKU === 'true') {
+  console.log('available transports', io.engine.transports);
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+}
+
 server.on('request', router);
 server.listen(port);
 
@@ -34,9 +40,5 @@ router.post('/integration/{integration}/{token}', function(req, res) {
 });
 
 io.sockets.on('connection', function(socket) {
-  if (process.env.HEROKU === 'true') {
-    io.set("transports", ["xhr-polling"]);
-    io.set("polling duration", 10);
-  }
-//  console.log('connected socket', socket);
+  //  console.log('connected socket', socket);
 });
