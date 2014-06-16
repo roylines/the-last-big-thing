@@ -10,8 +10,9 @@ var content = require('./lib/content'),
 //io.set('log level', 1); // reduce logging
 
 // https://devcenter.heroku.com/articles/using-socket-io-with-node-js-on-heroku
+io.set("transports", ["xhr-polling"]);
 if (process.env.HEROKU === 'true') {
-  //io.set("transports", ["xhr-polling"]);
+  io.set("transports", ["xhr-polling"]);
   //io.set("polling duration", 10);
 };
 
