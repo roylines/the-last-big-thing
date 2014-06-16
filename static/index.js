@@ -8,7 +8,8 @@ var lastBigThing = function(data) {
 };
 
 $(function() {
-  var origin = window.location.origin;
-  var socket = io.connect(origin);
+  //var origin = window.location.origin;
+  //var socket = io.connect(origin);
+  var socket = io.connect();
   socket.on('AABBCC', lastBigThing);
 });

@@ -13,9 +13,6 @@ if (process.env.HEROKU === 'true') {
 }
 
 server.on('request', router);
-server.listen(port);
-
-console.log('Server running on ' + port);
 
 router.get('/', content.static('index.html'));
 router.get('/index.js', content.static('index.js'));
@@ -41,3 +38,5 @@ router.post('/integration/{integration}/{token}', function(req, res) {
 io.sockets.on('connection', function(socket) {
   //  console.log('connected socket', socket);
 });
+
+server.listen(port);
