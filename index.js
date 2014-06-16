@@ -9,8 +9,7 @@ var port = process.env.PORT || 8000;
 
 if (process.env.HEROKU === 'true') {
   console.log('available transports', io.engine.transports);
-  io.set("transports", ["xhr-polling"]);
-  io.set("polling duration", 10);
+  io.set("transports", ["polling"]);
 }
 
 server.on('request', router);
