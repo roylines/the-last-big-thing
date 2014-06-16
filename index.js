@@ -10,7 +10,8 @@ var content = require('./lib/content'),
 server.on('request', router);
 
 // https://devcenter.heroku.com/articles/using-socket-io-with-node-js-on-heroku
-io.set("transports", ["xhr-polling"]);
+console.log('transports', io.engine.transports);
+io.set('transports', io.engine.transports);
 if (process.env.HEROKU === 'true') {
 //  io.set("transports", ["xhr-polling"]);
   //io.set("polling duration", 10);
