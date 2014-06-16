@@ -12,7 +12,7 @@ server.on('request', router);
 // https://devcenter.heroku.com/articles/using-socket-io-with-node-js-on-heroku
 io.set("transports", ["xhr-polling"]);
 if (process.env.HEROKU === 'true') {
-  io.set("transports", ["xhr-polling"]);
+//  io.set("transports", ["xhr-polling"]);
   //io.set("polling duration", 10);
 };
 
