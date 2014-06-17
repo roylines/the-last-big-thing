@@ -1,4 +1,6 @@
-var content = require('./lib/content'),
+var _ = require('lodash'),
+  async = require('async'),
+  content = require('./lib/content'),
   fs = require('fs'),
   integrations = require('./integrations/integrations'),
   router = require('router')(),
@@ -16,20 +18,33 @@ router.get('/index.js', content.static('index.js'));
 router.get('/styles.css', content.static('styles.css'));
 
 router.post('/integration/{integration}/{token}', function(req, res) {
-  integrations.get(req.params.integration, function(e, integration) {
+  console.log('an integration has sent data', req.params.integration, req.params.token);
+  var get = function(done) {
+    console.log('getting integration');
+    return integrations.get(req.params.integration, done);
+  };
+
+  var transform = function(integration, done) {
+    console.log('transforming integration');
+    return integration.transform(req, done);
+  };
+
+  var emit = function(transformed, done) {
+    console.log('emitting integration');
+    io.emit(req.params.token, transformed);
+    return done();
+  };
+
+  var end = function(e) {
+    console.log('ending integration');
     if (e) {
-      console.error(e);
-      return res.end();
+      console.error('integration update', e);
+      res.statusCode = 500;
     }
-    integration.transform(req, function(e, transformed) {
-      if (e) {
-        console.error(e);
-        return res.end();
-      }
-      io.emit(req.params.token, transformed);
-      res.end();
-    });
-  });
+    return res.end();
+  }
+
+  return async.waterfall([get, transform, emit], end);
 });
 
 io.on('connection', function(socket) {

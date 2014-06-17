@@ -1,27 +1,15 @@
-var body = require('raw-body');
-var github = {};
+var map = [{
+    tag: 'h1',
+    html: 'GITHUB'
+  }, {
+    tag: 'h2',
+    html: ''
+  }, {
+    tag: 'p',
+    html: ''
+  }
+];
 
-github.transform = function(req, done) {
-  body(req, function(e, s) {
-    if(e) {
-      return done(e);
-    }
-
-    var json = JSON.parse(s.toString());
-
-    var transformed = json;
-    /*
-    var transformed = {
-      src: 'GitHub',
-      title: 'New GitHub Issue',
-      sub: json.issue.title,
-      utc: new Date().getTime(),
-      text: json.issue.body
-    };
-    */
-
-    return done(null, transformed);
-  });
+module.exports = {
+  transform: require('./json')(map)
 };
-
-module.exports = github;

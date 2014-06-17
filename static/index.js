@@ -1,15 +1,8 @@
-var lastBigThing = function(data) {
-  console.log('data received', data);
-  var html = '<h1>' + data.title + '</h1>';
-  html += '<h2>' + data.sub + '</h2>';
-  html += '<p>' + data.text + '</p>';
-
+var lastBigThing = function(html) {
   $('#lbt').fadeOut().html(html).fadeIn();
 };
 
 $(function() {
-  //var origin = window.location.origin;
-  //var socket = io.connect(origin);
   var socket = io();
   socket.on('AABBCC', lastBigThing);
 });
