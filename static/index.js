@@ -10,6 +10,6 @@ var lastBigThing = function(data) {
 $(function() {
   //var origin = window.location.origin;
   //var socket = io.connect(origin);
-  var socket = io.connect();
+  var socket = io();
   socket.on('AABBCC', lastBigThing);
 });
