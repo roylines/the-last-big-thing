@@ -1,6 +1,6 @@
 var integrations = require('../integrations/integrations'),
   test = require('tap').test;
-
+/*
 test('github exists', function(t) {
     integrations.get('github', function(e, integration) {
       t.equal(e, null, 'no error');
@@ -15,3 +15,4 @@ test('unknown returns error', function(t) {
       t.end();
     });
 });
+*/
