@@ -5,12 +5,13 @@
 #F1F1F1
 #0C0C0C
 */
+
 body {
   background-color: #0C0C0C;
   color: #5A5600;
-  font-family: 'Roboto', sans-serif;
   text-align: center;
   margin: 10px;
+  font-family: 'Oswald', sans-serif;
 }
 
 h1 {
@@ -18,22 +19,10 @@ h1 {
 }
 
 #lbt {
-  display:none;
-}
-
-#lbt > h1 {
   color: #EFE603;
-  font-size: 6em;
 }
 
-#lbt > h2 {
-  color: #EFE603;
-  font-size: 3em;
+#heading {
+  color: #5A5600;
 }
-
-#lbt > p {
-  color: #062074;
-  font-size: 3em;
-}
-
 

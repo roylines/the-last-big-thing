@@ -10,6 +10,7 @@ var _ = require('lodash'),
 
 router.get('/', content.static('index.html'));
 router.get('/index.js', content.static('index.js'));
+router.get('/bigtext.js', content.static('bigtext.js'));
 router.get('/styles.css', content.static('styles.css'));
 
 router.post('/integration/{integration}/{token}', function(req, res) {
