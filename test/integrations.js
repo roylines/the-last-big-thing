@@ -17,5 +17,5 @@ var check = function(integration, file) {
   };
 };
 
-test('new github issue', check(github, 'github-new-issue'));
+//test('new github issue', check(github, 'github-new-issue'));
 test('new github comment', check(github, 'github-new-comment'));

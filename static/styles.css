@@ -10,19 +10,24 @@ body {
   background-color: #0C0C0C;
   color: #5A5600;
   text-align: center;
-  margin: 10px;
   font-family: 'Oswald', sans-serif;
-}
-
-h1 {
-  font-size: 1.25em;
+  text-transform:uppercase;
 }
 
 #lbt {
   color: #EFE603;
+  height: 100px;
 }
 
 #heading {
   color: #5A5600;
+}
+
+#utc { 
+  position:absolute;
+  width:500px;
+  margin-left:-250px;
+  bottom:5px;
+  left:50%;
 }
 

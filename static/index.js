@@ -1,12 +1,20 @@
+var btconfig = {
+  maxfontsize: 80,
+  minfontsize: 16
+};
+
 var lastBigThing = function(data) {
-  $('#integration').text(data.integration);
-  $('#lbt').bigtext();
-  //$('#title').fadeOut().text(data.integration).bigtext().fadeIn();
+  console.log(data);
+  $('#lbt').fadeOut();
+  $('#title').text(data.title);
+  $('#details').text(data.details);
+  $('#utc').text("This happened: " + new Date(data.utc).toLocaleString());
+
+  $('#lbt').bigtext(btconfig).fadeIn();
 };
 
 $(function() {
-
-  $('#lbt').bigtext();
+  $('#lbt').bigtext(btconfig);
   var socket = io();
   socket.on('AABBCC', lastBigThing);
 });
