@@ -6,8 +6,8 @@ var btconfig = {
 var lastBigThing = function(data) {
   console.log(data);
   $('#lbt').fadeOut();
-  $('#title').text(data.title);
-  $('#details').text(data.details);
+  $('#title').html(data.title);
+  $('#details').html(data.details);
   $('#utc').text("This happened: " + new Date(data.utc).toLocaleString());
 
   $('#lbt').bigtext(btconfig).fadeIn();
