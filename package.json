@@ -27,7 +27,7 @@
     "raw-body": "*",
     "response": "*",
     "router": "*",
-    "socket.io": "1.0.4",
+    "socket.io": "1.7.3",
     "through": "*"
   },
   "devDependencies": {
